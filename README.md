@@ -1,66 +1,157 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Student Academic Assistance System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based academic management and student support platform designed to help students organize their academic activities, plan study sessions, practice through quizzes, and monitor their progress. The system provides dedicated functionality for students, teachers, and administrators.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Student Portal
+- Student dashboard and profile management
+- Academic records for assignments, exams, attendance, and marks
+- AI assistant interface for academic questions
+- Study-plan generation and task tracking
+- Quiz generation, attempts, and result review
+- Academic document uploads
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Teacher Portal
+- Teacher dashboard and profile management
+- Course and student information
+- Attendance and marks management
+- Assignment and exam management
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Administrator Portal
+- User management and account status controls
+- Department and subject management
+- Student records and student details
+- Activity log viewing
 
-## Learning Laravel
+### Authentication and Security
+- User registration and login
+- Email verification using one-time codes
+- Password reset functionality
+- Google sign-in integration
+- Role-based access control
+- Authentication and email-verification middleware
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Technology Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Backend:** PHP 8.2+ and Laravel 12
+- **Database:** MySQL (configurable)
+- **Frontend:** Laravel Blade, JavaScript, CSS
+- **Frontend tooling:** Vite and npm
+- **Authentication:** Laravel authentication and Socialite
+- **AI integration:** Gemini service configuration
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Requirements
 
-## Laravel Sponsors
+Before installing the project, ensure that the following are available:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2 or newer compatible with the project
+- Composer
+- Node.js and npm
+- MySQL
+- Git
 
-### Premium Partners
+## Installation and Setup
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 1. Clone the Repository
 
-## Contributing
+```bash
+git clone https://github.com/raja5757/student-academic-assistance.git
+cd student-academic-assistance
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Install PHP Dependencies
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 3. Configure Environment Variables
 
-## Security Vulnerabilities
+Copy the example environment file.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Windows PowerShell:**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**macOS/Linux:**
+
+```bash
+cp .env.example .env
+```
+
+Configure the database, email settings, Google OAuth credentials, and other required variables in `.env`.
+
+Keep real credentials in the local `.env` file. Never commit API keys, passwords, or private OAuth secrets to GitHub.
+
+### 4. Generate the Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Configure the Database
+
+Create the database specified in your `.env` configuration. Then run:
+
+```bash
+php artisan migrate
+```
+
+Review the database seeders and required initial records, such as roles, departments, and semesters, when setting up a fresh database.
+
+### 6. Install Frontend Dependencies
+
+```bash
+npm install
+npm run build
+```
+
+### 7. Start the Development Server
+
+```bash
+php artisan serve
+```
+
+Open the local URL printed by Laravel, usually:
+
+`http://127.0.0.1:8000`
+
+## Environment Configuration
+
+The `.env.example` file includes configuration placeholders for:
+
+- `DB_*` — database connection
+- `MAIL_*` — SMTP and email delivery
+- `GEMINI_API_KEY` — Gemini API configuration
+- `GEMINI_MODEL` — configured Gemini model
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` — Google OAuth
+- `GOOGLE_REDIRECT_URI` — OAuth callback URL
+
+Use valid credentials for the intended environment. Never put real secrets in source code or documentation.
+
+## Testing
+
+Run the Laravel test suite using:
+
+```bash
+php artisan test
+```
+
+## Development Note
+
+The current Gemini service implementation contains a mock response path that returns before reaching the HTTP request code. Real Gemini API requests will therefore require reviewing and correcting that implementation.
+
+## Security
+
+- Keep `.env` excluded from version control.
+- Never publish API keys, OAuth secrets, or email app passwords.
+- Use secure application settings in production.
+- Set `APP_DEBUG=false` in production.
+- Configure production OAuth redirect URLs correctly.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The license for this project should be explicitly confirmed before redistribution.
